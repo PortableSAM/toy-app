@@ -10,7 +10,17 @@ class App extends React.Component {
 	minus = () => {
 		this.setState({ count: this.state.count - 1 });
 	};
+	componentDidMount() {
+		console.log('component rendered');
+	}
+	componentDidUpdate() {
+		console.log('I just updated');
+	}
+	componentWillUnmount() {
+		console.log('Goodbye, cruel world');
+	}
 	render() {
+		console.log('i am rendering');
 		return (
 			<div>
 				<h1>The number is :{this.state.count}</h1>
@@ -22,4 +32,8 @@ class App extends React.Component {
 }
 
 export default App;
-// setState를 쓰면 React는 새로운 State를 rendering한다.
+/* 
+setState Call -> component Call -> 1st. render Call -> updateCompletion
+-> componentDidUpdate Execute.
+
+*/
