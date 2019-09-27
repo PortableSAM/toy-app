@@ -22,3 +22,4 @@ class App extends React.Component {
 }
 
 export default App;
+// setState를 쓰면 React는 새로운 State를 rendering한다.
