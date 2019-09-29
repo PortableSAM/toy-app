@@ -2,37 +2,21 @@ import React from 'react';
 
 class App extends React.Component {
 	state = {
-		count: 0,
-	};
-	add = () => {
-		this.setState({ count: this.state.count + 1 });
-	};
-	minus = () => {
-		this.setState({ count: this.state.count - 1 });
+		isLoading: true,
+		movies: [],
 	};
 	componentDidMount() {
-		console.log('component rendered');
+		setTimeout(() => {
+			this.setState({ isLoading: false });
+		}, 6000);
 	}
-	componentDidUpdate() {
-		console.log('I just updated');
-	}
-	componentWillUnmount() {
-		console.log('Goodbye, cruel world');
-	}
+	//componentDidMount에서 Data fetch
+	//API로 부터 data fetching리 완료되면 'We are ready?'대신 Movie를 render하고
+	//map을 만들고 Movie를 render
 	render() {
-		console.log('i am rendering');
-		return (
-			<div>
-				<h1>The number is :{this.state.count}</h1>
-				<button onClick={this.add}>Add</button>
-				<button onClick={this.minus}>Minus</button>
-			</div>
-		);
+		const { isLoading } = this.state;
+		return <div>{isLoading ? 'Loading...' : 'We are ready?'}</div>;
 	}
 }
 
 export default App;
-/* 
-setState Call -> component Call -> 1st. render Call -> updateCompletion
--> componentDidUpdate Execute.
-*/
