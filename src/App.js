@@ -1,18 +1,18 @@
 import React from 'react';
+import axios from 'axios';
 
 class App extends React.Component {
 	state = {
 		isLoading: true,
 		movies: [],
 	};
+	/* async를 써야 await를 사용 할 수 있음. */
+	getMovies = async () => {
+		const movies = await axios.get('https://yts-proxy.now.sh/list_movies.json');
+	};
 	componentDidMount() {
-		setTimeout(() => {
-			this.setState({ isLoading: false });
-		}, 6000);
+		this.getMovies();
 	}
-	//componentDidMount에서 Data fetch
-	//API로 부터 data fetching리 완료되면 'We are ready?'대신 Movie를 render하고
-	//map을 만들고 Movie를 render
 	render() {
 		const { isLoading } = this.state;
 		return <div>{isLoading ? 'Loading...' : 'We are ready?'}</div>;
